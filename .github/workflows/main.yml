@@ -8,8 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Ambil kode dari repo
+      - name: Ambil kode project
         uses: actions/checkout@v3
 
       - name: Siapkan Java dan Gradle
@@ -18,14 +19,13 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Unzip file project
-        run: unzip MyBanYou_final.zip -d MyBanYou_final
-
-      - name: Masuk ke folder project
-        run: cd MyBanYou_final && ./gradlew assembleDebug
+      - name: Build APK
+        run: |
+          chmod +x ./gradlew
+          ./gradlew assembleDebug
 
       - name: Upload hasil APK
         uses: actions/upload-artifact@v3
         with:
           name: MyBanYou-APK
-          path: MyBanYou_final/app/build/outputs/apk/debug/*.apk
+          path: app/build/outputs/apk/debug/*.apk
