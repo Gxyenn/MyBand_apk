@@ -1,4 +1,4 @@
-package com.mybanyou.Gxyenn
+package com.xnxxband.Gxyenn
 
 import android.os.Bundle
 import android.view.View
